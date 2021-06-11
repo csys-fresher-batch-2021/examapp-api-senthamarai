@@ -20,5 +20,15 @@ class AdminService
         }
             
     }
+
+    /**
+     * Function check whether user is available.
+     * @param {*} login 
+     */
+    static authenticateAdmin(login)
+    {
+        return AdminDao.authenticateAdmin(login);
+    }
+
 }
 module.exports = AdminService;

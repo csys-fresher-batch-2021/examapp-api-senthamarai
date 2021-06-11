@@ -24,4 +24,6 @@ app.delete('/api/subjects/:id', SubjectController.deleteSubject); //Delete the E
 //Routes for admin
 app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
+app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
