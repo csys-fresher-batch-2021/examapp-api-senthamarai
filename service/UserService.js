@@ -56,5 +56,22 @@ class UserService
         return UserDao.deleteUser(id);
     }
 
+    /**
+     * Function to change password details
+     * @param {*} updatedDetails
+     */
+    static changePassword(updatedDetails)
+    {
+        const result = UserValidator.userSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return UserDao.changePassword(updatedDetails);
+        }      
+    }
+
 }
 module.exports = UserService;
