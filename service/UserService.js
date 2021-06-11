@@ -37,5 +37,14 @@ class UserService
     {
         return UserDao.showUsersList();  
     }
+
+    /**
+     * Function to get a subject details by using id.
+     * @param {*} id 
+     */
+    static getUserDetail(id)
+    {
+        return UserDao.getUser(id);
+    }
 }
 module.exports = UserService;
