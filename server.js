@@ -8,6 +8,7 @@ app.use(cors());
 
 const SubjectController=require('./controller/SubjectController.js');
 const AdminController=require('./controller/AdminController.js');
+const UserController=require('./controller/UserController.js');
 
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => res.send('PARIKSHA Reaching out to everyone'))
@@ -25,5 +26,8 @@ app.delete('/api/subjects/:id', SubjectController.deleteSubject); //Delete the E
 app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
 app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
+
+//Routes for registered users
+app.post('/api/user', UserController.addNewUser); //User Registration
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
