@@ -62,5 +62,27 @@ class SubjectDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to delete a subject details by using id.
+     * @param {*} id 
+     */
+    static async deleteSubject(id)
+    {
+        let params = [id];
+        let deleteQuery = 'DELETE FROM subjectslist WHERE id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(deleteQuery, params);
+           // console.log(result);
+            client.release();
+            return result.rowCount;
+        } 
+        catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = SubjectDao;
