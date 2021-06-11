@@ -59,5 +59,28 @@ class SubjectController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+    * Function to update the subject to the database.
+    * @param {*} req 
+    * @param {*} res 
+    */
+    static async updateSubject(req, res)
+    {
+        let id = req.params.id;
+        try
+        {
+            let result = await SubjectService.updateSubject(id, req.body);
+            if(result != null)
+            {
+                console.log("Updated successfull");
+                res.status(200).json({message: "success"});
+            }
+        } 
+        catch(error)
+        {
+            res.status(400).json({message: error.message});
+        }
+    }
 }
 module.exports = SubjectController;

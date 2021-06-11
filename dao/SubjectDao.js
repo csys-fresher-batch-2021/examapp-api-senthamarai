@@ -84,5 +84,26 @@ class SubjectDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to update a subject in database using subject id.
+     * @param {*} updatedSubject
+     */
+    static async updateSubject(id, updatedSubject)
+    {
+        let params = [updatedSubject.subject,id];
+        let updateQuery = `UPDATE subjectslist SET subject=$1 WHERE id=$2`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(updateQuery, params);
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = SubjectDao;
