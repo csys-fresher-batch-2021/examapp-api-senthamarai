@@ -1,4 +1,5 @@
 const SubjectDao = require('../dao/SubjectDao.js');
+let SubjectValidator = require('../validation/SubjectValidator.js');
 class SubjectService 
 {
     /**
@@ -16,6 +17,23 @@ class SubjectService
     static getSubjectDetail(id)
     {
         return SubjectDao.getSubject(id);
+    }
+
+    /**
+     * Function to add new subject to database.
+     * @param {*} subject
+     */
+    static addNewSubject(subject)
+    {
+        const result = SubjectValidator.validSubject(subject);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return SubjectDao.addNewSubject(subject);
+        }
     }
 }
 module.exports = SubjectService;
