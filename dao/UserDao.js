@@ -104,5 +104,27 @@ class UserDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to a change password in database.
+     * @param {*} updatedDetails
+     */
+    static async changePassword(updatedDetails)
+    {
+        let params = [updatedDetails.name,updatedDetails.number, updatedDetails.password];
+        let jobQuery = `UPDATE registeruser SET password=$3 WHERE name=$1 AND number=$2`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(jobQuery, params);
+            console.log("Password changed successfully");
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = UserDao;
