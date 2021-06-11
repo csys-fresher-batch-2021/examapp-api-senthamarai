@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 const SubjectController=require('./controller/SubjectController.js');
+const AdminController=require('./controller/AdminController.js');
 
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => res.send('PARIKSHA Reaching out to everyone'))
@@ -19,5 +20,8 @@ app.get('/api/subjects/:id', SubjectController.getSubjectById); // Display the s
 app.post('/api/subjects', SubjectController.addNewSubject); //Add new Subject by Admin
 
 app.delete('/api/subjects/:id', SubjectController.deleteSubject); //Delete the Existing Subject by Admin
+
+//Routes for admin
+app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
