@@ -14,4 +14,6 @@ app.get('/', (req, res) => res.send('PARIKSHA Reaching out to everyone'))
 //Routes for subjects
 app.get('/api/subjects', SubjectController.getAllSubjects); // Display the Subjects by Users
 
+app.get('/api/subjects/:id', SubjectController.getSubjectById); // Display the subjects by Id by Users
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
