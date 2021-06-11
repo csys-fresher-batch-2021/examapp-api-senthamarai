@@ -21,5 +21,26 @@ class AdminDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to check whether user is available in database for authentication.
+     * @param {*} login 
+     */
+    static async authenticateAdmin(login)
+    {
+        let loginData = [login.email, login.password];
+        const userQuery = "SELECT * FROM adminuser WHERE EMAIL=$1 AND PASSWORD=$2";
+        try
+        {
+            let client = await pool.connect();
+            let result = await client.query(userQuery, loginData);
+            client.release();
+            return result.rows;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = AdminDao;
