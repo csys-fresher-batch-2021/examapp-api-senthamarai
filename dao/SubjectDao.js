@@ -20,5 +20,26 @@ class SubjectDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to get a subject details by using id.
+     * @param {*} id 
+     */
+    static async getSubject(id)
+    {
+        let params = [id];
+        let getSubject = 'SELECT * FROM Subjectslist WHERE id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getSubject, params);
+            client.release();
+            return result;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = SubjectDao;

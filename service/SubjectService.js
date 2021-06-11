@@ -8,5 +8,14 @@ class SubjectService
     {
         return SubjectDao.showSubjectsList();  
     }
+
+    /**
+     * Function to get a subject details by using id.
+     * @param {*} id 
+     */
+    static getSubjectDetail(id)
+    {
+        return SubjectDao.getSubject(id);
+    }
 }
 module.exports = SubjectService;
