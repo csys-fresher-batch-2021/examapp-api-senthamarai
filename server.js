@@ -20,6 +20,8 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
 app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
 
+app.get('/api/admin/users/:id', UserController.getUserById); //Display the Users by Id by Admin
+
 app.post('/api/subjects', SubjectController.addNewSubject); //Add new Subject by Admin
 
 app.delete('/api/subjects/:id', SubjectController.deleteSubject); //Delete the Existing Subject by Admin

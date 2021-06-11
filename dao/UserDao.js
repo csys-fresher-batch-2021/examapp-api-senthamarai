@@ -62,5 +62,26 @@ class UserDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to get a user details by using id.
+     * @param {*} id 
+     */
+    static async getUser(id)
+    {
+        let params = [id];
+        let getUser = 'SELECT * FROM registeruser WHERE id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getUser, params);
+            client.release();
+            return result;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = UserDao;

@@ -50,5 +50,12 @@ class UserController
         let result = await UserService.getAllUsers();
         res.send(result);
     }
+
+    //Function to display the users by id from the database
+    static async getUserById(req, res) 
+    {
+        let result = await UserService.getUserDetail(req.params.id);
+        res.send(result.rows);
+    }
 }
 module.exports = UserController;
