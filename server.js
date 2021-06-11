@@ -30,4 +30,6 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 //Routes for registered users
 app.post('/api/user', UserController.addNewUser); //User Registration
 
+app.post('/api/user/login', UserController.authenticateUser); //User Login
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))

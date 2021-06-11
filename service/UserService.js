@@ -20,5 +20,14 @@ class UserService
         }
             
     }
+
+    /**
+     * Function check whether user is available.
+     * @param {*} login 
+     */
+    static authenticateUser(login)
+    {
+        return UserDao.authenticateUser(login);
+    }
 }
 module.exports = UserService;
