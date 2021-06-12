@@ -20,6 +20,7 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
 app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
 
+app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
 
 //Routes for subjects
 app.get('/api/subjects', SubjectController.getAllSubjects); // Display the Subjects by Users

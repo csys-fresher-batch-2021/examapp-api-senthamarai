@@ -2,53 +2,11 @@ const pool = require('../dao/connection.js');
 class UserDao 
 {
     /**
-     * Function to add new user to database.
-     * @param {*} user
-     */
-    static async addNewUser(user) 
-    {
-        let userData = [user.name, user.number, user.password];
-        let querySubject = 'INSERT INTO public.registeruser(name, number, password) VALUES ($1, $2, $3)';
-        try 
-        {
-            const client = await pool.connect();
-            const result = await client.query(querySubject, userData);
-            client.release();
-            return result;
-        } 
-        catch (error)
-        {
-            console.log(error);
-        }
-    }
-
-    /**
-     * Function to check whether user is available in database for authentication.
-     * @param {*} login 
-     */
-    static async authenticateUser(login)
-    {
-        let loginData = [login.number, login.password];
-        const userQuery = "SELECT * FROM registeruser WHERE NUMBER=$1 AND PASSWORD=$2";
-        try
-        {
-            let client = await pool.connect();
-            let result = await client.query(userQuery, loginData);
-            client.release();
-            return result.rows;
-        } 
-        catch(err)
-        {
-            console.log(err);
-        }
-    }
-
-    /**
      * Function to display all users from the database
      */
     static async showUsersList() 
     {
-        let userQuery = 'SELECT * FROM registeruser';
+        let userQuery = 'SELECT user_id,firstname,lastname,email,organization_name,created_on,last_login FROM registeruser';
         try
         {
             const client = await pool.connect();
@@ -60,70 +18,6 @@ class UserDao
         catch (error) 
         {
             console.log(error);
-        }
-    }
-
-    /**
-     * Function to get a user details by using id.
-     * @param {*} id 
-     */
-    static async getUser(id)
-    {
-        let params = [id];
-        let getUser = 'SELECT * FROM registeruser WHERE id = $1';
-        try 
-        {
-            const client = await pool.connect();
-            const result = await client.query(getUser, params);
-            client.release();
-            return result;
-        } 
-        catch (err) 
-        {
-            console.log(err);
-        }
-    }
-
-    /**
-     * Function to delete a user details by using id.
-     * @param {*} id 
-     */
-    static async deleteUser(id)
-    {
-        let params = [id];
-        let deleteQuery = 'DELETE FROM registeruser WHERE id = $1';
-        try 
-        {
-            const client = await pool.connect();
-            const result = await client.query(deleteQuery, params);
-           // console.log(result);
-            client.release();
-            return result.rowCount;
-        } catch (error) 
-        {
-            console.log(error);
-        }
-    }
-
-    /**
-     * Function to a change password in database.
-     * @param {*} updatedDetails
-     */
-    static async changePassword(updatedDetails)
-    {
-        let params = [updatedDetails.name,updatedDetails.number, updatedDetails.password];
-        let jobQuery = `UPDATE registeruser SET password=$3 WHERE name=$1 AND number=$2`;
-        try
-        {
-            let client = await pool.connect();
-            let result = client.query(jobQuery, params);
-            console.log("Password changed successfully");
-            client.release();
-            return result;
-        } 
-        catch(err)
-        {
-            console.log(err);
         }
     }
 }
