@@ -41,5 +41,26 @@ class SubjectDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to add new subject to database.
+     * @param {*} subject
+     */
+    static async addNewSubject(subject) 
+    {
+        let subjectData=[subject.subject_code, subject.subject_name];
+        let querySubject = 'INSERT INTO public.subjectslist(subject_code, subject_name) VALUES ($1,$2)';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(querySubject, subjectData);
+            client.release();
+            return result;
+        } 
+        catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = SubjectDao;
