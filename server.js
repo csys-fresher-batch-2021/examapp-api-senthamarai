@@ -18,12 +18,6 @@ app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
 app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
-app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
-
-app.get('/api/admin/users/:id', UserController.getUserById); //Display the Users by Id by Admin
-
-app.delete('/api/admin/users/:id', UserController.deleteUser); //Delete ths Users by Admin
-
 
 //Routes for registered users
 app.post('/api/user', UserController.addNewUser); //User Registration
