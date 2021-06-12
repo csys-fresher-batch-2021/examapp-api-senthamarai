@@ -17,4 +17,6 @@ app.get('/api/subjects', SubjectController.getAllSubjects); // Display the Subje
 
 app.get('/api/subjects/:id', SubjectController.getSubjectById); // Display the subjects by Id by Users
 
+app.post('/api/admin/subjects', SubjectController.addNewSubject); //Add new Subject by Admin
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
