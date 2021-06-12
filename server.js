@@ -19,4 +19,7 @@ app.get('/api/subjects/:id', SubjectController.getSubjectById); // Display the s
 
 app.post('/api/admin/subjects', SubjectController.addNewSubject); //Add new Subject by Admin
 
+app.delete('/api/admin/subjects/:id', SubjectController.deleteSubject); //Delete the Existing Subject by Admin
+
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
