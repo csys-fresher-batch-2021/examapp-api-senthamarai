@@ -22,12 +22,20 @@ class AdminService
     }
 
     /**
-     * Function check whether user is available.
-     * @param {*} login 
+     * Function to change password details
+     * @param {*} updatedDetails
      */
-    static authenticateAdmin(login)
+    static changePassword(updatedDetails)
     {
-        return AdminDao.authenticateAdmin(login);
+        const result = AdminValidator.passwordSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return AdminDao.changePassword(updatedDetails);
+        }      
     }
 
 }

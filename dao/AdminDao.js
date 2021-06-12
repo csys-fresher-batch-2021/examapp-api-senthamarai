@@ -7,8 +7,8 @@ class AdminDao
      */
     static async addNewAdmin(admin) 
     {
-        let adminData = [admin.name, admin.email, admin.password];
-        let querySubject = 'INSERT INTO public.adminuser(name, email, password) VALUES ($1, $2, $3)';
+        let adminData = [admin.admin_id, admin.firstname, admin.lastname, admin.email, admin.organization_name, admin.password];
+        let querySubject = 'INSERT INTO public.adminuser(admin_id,firstname, lastname, email, organization_name, password) VALUES ($1, $2, $3 ,$4 , $5, $6)';
         try 
         {
             const client = await pool.connect();
@@ -23,19 +23,20 @@ class AdminDao
     }
 
     /**
-     * Function to check whether user is available in database for authentication.
-     * @param {*} login 
+     * Function to a change password in database.
+     * @param {*} updatedDetails
      */
-    static async authenticateAdmin(login)
+    static async changePassword(updatedDetails)
     {
-        let loginData = [login.email, login.password];
-        const userQuery = "SELECT * FROM adminuser WHERE EMAIL=$1 AND PASSWORD=$2";
+        let params = [updatedDetails.email,updatedDetails.password];
+        let jobQuery = `UPDATE adminuser SET password=$2 WHERE email=$1`;
         try
         {
             let client = await pool.connect();
-            let result = await client.query(userQuery, loginData);
+            let result = client.query(jobQuery, params);
+            console.log("Password changed successfully");
             client.release();
-            return result.rows;
+            return result;
         } 
         catch(err)
         {

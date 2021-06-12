@@ -23,24 +23,25 @@ class AdminController
             res.status(400).send(error.message);
         }
     }
-    
+   
     /**
-     * Function to authenticate admin user.
-     * @param {*} req 
-     * @param {*} res 
-     */
-    static async authenticateAdmin(req, res)
+    * Function to change the admin password in the database.
+    * @param {*} req 
+    * @param {*} res 
+    */
+    static async changePassword(req, res)
     {
-        let result = await AdminService.authenticateAdmin(req.body);
-        if(result.length > 0)
+        try
         {
-            result[0]['message'] = "success";
-            console.log("Login successfully");
-            res.status(200).json(result[0]);
+            let result = await AdminService.changePassword(req.body);
+            if(result != null)
+            {
+                 res.status(200).json({message: "success"});
+            }
         } 
-        else
+        catch(err)
         {
-            res.status(400).json({message: "failed"});
+            res.status(400).json({message: err.message});
         }
     }
 }
