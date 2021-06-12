@@ -23,7 +23,7 @@ class AdminController
             res.status(400).send(error.message);
         }
     }
-   
+  
     /**
     * Function to change the admin password in the database.
     * @param {*} req 

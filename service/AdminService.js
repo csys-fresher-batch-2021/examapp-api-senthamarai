@@ -20,7 +20,7 @@ class AdminService
         }
             
     }
-
+  
     /**
      * Function to change password details
      * @param {*} updatedDetails
@@ -37,6 +37,5 @@ class AdminService
             return AdminDao.changePassword(updatedDetails);
         }      
     }
-
 }
 module.exports = AdminService;
