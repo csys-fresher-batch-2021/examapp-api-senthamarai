@@ -21,5 +21,27 @@ class AdminDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to a change password in database.
+     * @param {*} updatedDetails
+     */
+    static async changePassword(updatedDetails)
+    {
+        let params = [updatedDetails.email,updatedDetails.password];
+        let jobQuery = `UPDATE adminuser SET password=$2 WHERE email=$1`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(jobQuery, params);
+            console.log("Password changed successfully");
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = AdminDao;

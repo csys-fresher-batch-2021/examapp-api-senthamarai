@@ -20,5 +20,22 @@ class AdminService
         }
             
     }
+  
+    /**
+     * Function to change password details
+     * @param {*} updatedDetails
+     */
+    static changePassword(updatedDetails)
+    {
+        const result = AdminValidator.passwordSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return AdminDao.changePassword(updatedDetails);
+        }      
+    }
 }
 module.exports = AdminService;
