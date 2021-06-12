@@ -20,7 +20,7 @@ class AdminService
         }
             
     }
-
+  
     /**
      * Function check whether user is available.
      * @param {*} login 
@@ -46,6 +46,5 @@ class AdminService
             return AdminDao.changePassword(updatedDetails);
         }      
     }
-
 }
 module.exports = AdminService;
