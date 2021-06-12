@@ -22,6 +22,15 @@ class AdminService
     }
 
     /**
+     * Function check whether user is available.
+     * @param {*} login 
+     */
+    static authenticateAdmin(login)
+    {
+        return AdminDao.authenticateAdmin(login);
+    }
+
+    /**
      * Function to change password details
      * @param {*} updatedDetails
      */
