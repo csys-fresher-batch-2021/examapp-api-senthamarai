@@ -7,9 +7,13 @@ app.use(express.json());
 app.use(cors());
 
 const SubjectController=require('./controller/SubjectController.js');
+const AdminController=require('./controller/AdminController.js');
 
 const port = process.env.PORT || 3000;
 app.get('/', (req,res) => res.send('PARIKSHA Reaching out to everyone'))
+
+//Routes for admin 
+app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
 //Routes for subjects
 
