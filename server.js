@@ -22,6 +22,10 @@ app.put('/api/admin/changepassword', AdminController.changePassword); //Change U
 
 app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
 
+//Routes for registered users
+app.post('/api/user', UserController.addNewUser); //User Registration
+
+
 //Routes for subjects
 app.get('/api/subjects', SubjectController.getAllSubjects); // Display the Subjects by Users
 
