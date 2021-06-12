@@ -20,58 +20,5 @@ class UserService
         }
             
     }
-
-    /**
-     * Function check whether user is available.
-     * @param {*} login 
-     */
-    static authenticateUser(login)
-    {
-        return UserDao.authenticateUser(login);
-    }
-
-    /**
-     * Function to display all subjects from the database
-     */
-    static getAllUsers() 
-    {
-        return UserDao.showUsersList();  
-    }
-
-    /**
-     * Function to get a subject details by using id.
-     * @param {*} id 
-     */
-    static getUserDetail(id)
-    {
-        return UserDao.getUser(id);
-    }
-
-    /**
-     * Function to delete a subject details by using id.
-     * @param {*} id 
-     */
-    static deleteUser(id)
-    {
-        return UserDao.deleteUser(id);
-    }
-
-    /**
-     * Function to change password details
-     * @param {*} updatedDetails
-     */
-    static changePassword(updatedDetails)
-    {
-        const result = UserValidator.userSchema().validate(updatedDetails);
-        if(result.error != null)
-        {
-            throw new Error(result.error);
-        }
-        else
-        {
-            return UserDao.changePassword(updatedDetails);
-        }      
-    }
-
 }
 module.exports = UserService;
