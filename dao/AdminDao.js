@@ -23,6 +23,27 @@ class AdminDao
     }
 
     /**
+     * Function to check whether user is available in database for authentication.
+     * @param {*} login 
+     */
+    static async authenticateAdmin(login)
+    {
+        let loginData = [login.email, login.password];
+        const userQuery = "SELECT * FROM adminuser WHERE email=$1 AND password=$2";
+        try
+        {
+            let client = await pool.connect();
+            let result = await client.query(userQuery, loginData);
+            client.release();
+            return result.rows;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
+    /**
      * Function to a change password in database.
      * @param {*} updatedDetails
      */

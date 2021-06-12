@@ -15,6 +15,8 @@ app.get('/', (req,res) => res.send('PARIKSHA Reaching out to everyone'))
 //Routes for admin 
 app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
+app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
+
 app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
 
 
