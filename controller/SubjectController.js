@@ -37,5 +37,27 @@ class SubjectController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+     * Function to delete the subject to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async deleteSubject(req, res) 
+    {
+        try {
+            let id = parseInt(req.params.id);
+            const status = await SubjectService.deleteSubject(id);
+            if (status != 0) 
+            {
+                console.log("Deleted successfully");
+                res.status(200).json({ message: "success" });
+            }
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = SubjectController;

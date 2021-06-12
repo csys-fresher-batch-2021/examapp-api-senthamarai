@@ -35,5 +35,13 @@ class SubjectService
             return SubjectDao.addNewSubject(subject);
         }
     }
+
+    /**
+     * Function to delete subject by id from the database
+     */
+    static deleteSubject(id)
+    {
+        return SubjectDao.deleteSubject(id);
+    }
 }
 module.exports = SubjectService;
