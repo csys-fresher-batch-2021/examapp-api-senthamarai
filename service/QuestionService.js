@@ -37,6 +37,14 @@ class QuestionService
     {
         return QuestionDao.getQuestion(id);
     }
-    
+
+    /**
+     * Function to delete a question details by using id.
+     * @param {*} id 
+     */
+    static deleteQuestion(id)
+    {
+        return QuestionDao.deleteQuestion(id);
+    } 
 }
 module.exports = QuestionService;
