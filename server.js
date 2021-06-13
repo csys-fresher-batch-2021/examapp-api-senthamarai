@@ -8,7 +8,6 @@ app.use(cors());
 
 const SubjectController=require('./controller/SubjectController.js');
 const AdminController=require('./controller/AdminController.js');
-const UserController=require('./controller/UserController.js');
 
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => res.send('PARIKSHA Reaching out to everyone'))
@@ -20,10 +19,7 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
 app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
 
-app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
-
-//Routes for registered users
-app.post('/api/user', UserController.addNewUser); //User Registration
+app.delete('/api/admin/delete/:id', AdminController.deleteAdmin); //Delete Admin
 
 
 //Routes for subjects

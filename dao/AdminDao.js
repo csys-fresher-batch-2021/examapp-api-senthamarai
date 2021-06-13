@@ -64,5 +64,26 @@ class AdminDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to delete a admin details by using id.
+     * @param {*} id 
+     */
+    static async deleteAdmin(id)
+    {
+        let params = [id];
+        let deleteQuery = 'DELETE FROM adminuser WHERE admin_id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(deleteQuery, params);
+           // console.log(result);
+            client.release();
+            return result.rowCount;
+        } catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = AdminDao;
