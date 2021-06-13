@@ -23,5 +23,24 @@ class UserController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+     * Function to authenticate registered user.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async authenticateUser(req, res)
+    {
+        let result = await UserService.authenticateUser(req.body);
+        if(result != 0)
+        {
+            console.log("Login successfully");
+            res.status(200).json({ message: "success" });
+        } 
+        else
+        {
+            res.status(400).json({message: "failed"});
+        }
+    }
 }
 module.exports = UserController;
