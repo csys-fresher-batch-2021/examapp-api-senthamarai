@@ -25,7 +25,7 @@ class SubjectService
      */
     static addNewSubject(subject)
     {
-        const result = SubjectValidator.validSubject(subject);
+        const result = SubjectValidator.subjectSchema().validate(subject);
         if(result.error != null)
         {
             throw new Error(result.error);
@@ -43,24 +43,5 @@ class SubjectService
     {
         return SubjectDao.deleteSubject(id);
     }
-
-     /**
-     * Function to update subject details
-     * @param {*} id 
-     * @param {*} updatedSubject
-     */
-    static updateSubject(id, updatedSubject)
-    {
-        const result = SubjectValidator.validSubject(updatedSubject);
-        if(result.error != null)
-        {
-            throw new Error(result.error);
-        }
-        else
-        {
-            return SubjectDao.updateSubject(id, updatedSubject);
-        }      
-    }
-
 }
 module.exports = SubjectService;

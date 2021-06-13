@@ -47,5 +47,14 @@ class AdminService
         }      
     }
 
+     /**
+     * Function to delete a subject details by using id.
+     * @param {*} id 
+     */
+    static deleteAdmin(id)
+    {
+        return AdminDao.deleteAdmin(id);
+    }
+
 }
 module.exports = AdminService;
