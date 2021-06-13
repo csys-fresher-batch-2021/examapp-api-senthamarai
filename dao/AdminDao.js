@@ -50,11 +50,11 @@ class AdminDao
     static async changePassword(updatedDetails)
     {
         let params = [updatedDetails.email,updatedDetails.password];
-        let jobQuery = `UPDATE adminuser SET password=$2 WHERE email=$1`;
+        let changeQuery = `UPDATE adminuser SET password=$2 WHERE email=$1`;
         try
         {
             let client = await pool.connect();
-            let result = client.query(jobQuery, params);
+            let result = client.query(changeQuery, params);
             console.log("Password changed successfully");
             client.release();
             return result;

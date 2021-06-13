@@ -46,4 +46,7 @@ app.post('/api/admin/subjects', SubjectController.addNewSubject); //Add new Subj
 
 app.delete('/api/admin/subjects/:id', SubjectController.deleteSubject); //Delete the Existing Subject by Admin
 
+app.put('/api/admin/updatesubject', SubjectController.updateSubject); //Change User Password
+
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
