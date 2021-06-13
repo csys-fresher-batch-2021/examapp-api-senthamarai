@@ -73,5 +73,26 @@ class QuestionDao
             console.log(err);
         }
     }
+
+     /**
+     * Function to delete a question details by using id.
+     * @param {*} id 
+     */
+    static async deleteQuestion(id)
+    {
+        let params = [id];
+        let deleteQuestion = 'DELETE FROM questions WHERE question_id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(deleteQuestion, params);
+           // console.log(result);
+            client.release();
+            return result.rowCount;
+        } catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = QuestionDao;
