@@ -43,5 +43,22 @@ class SubjectService
     {
         return SubjectDao.deleteSubject(id);
     }
+
+    /**
+     * Function to change subject details
+     * @param {*} updatedDetails
+     */
+    static updateSubject(updatedDetails)
+    {
+        const result = SubjectValidator.subjectSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return SubjectDao.updateSubject(updatedDetails);
+        }      
+    }
 }
 module.exports = SubjectService;

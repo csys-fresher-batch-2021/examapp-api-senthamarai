@@ -84,5 +84,27 @@ class SubjectDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to a change subject details in database.
+     * @param {*} updatedDetails
+     */
+    static async updateSubject(updatedDetails)
+    {
+        let params = [updatedDetails.subject_code,updatedDetails.subject_name, updatedDetails.subject_id];
+        let subjectQuery = `UPDATE subjectslist SET subject_code=$1, subject_name=$2 WHERE subject_id=$3`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(subjectQuery, params);
+            console.log("Subject changed successfully");
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = SubjectDao;
