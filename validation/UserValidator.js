@@ -14,5 +14,14 @@ class UserValidator
         });
         return schema;
     }
+
+    static passwordSchema()
+    {
+        const schema = Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().regex(/^[a-zA-Z0-9]{3,20}$/).required(),
+        });
+        return schema;
+    }
 }
 module.exports = UserValidator;
