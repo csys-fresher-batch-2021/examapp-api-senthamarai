@@ -20,5 +20,13 @@ class QuestionService
         }
             
     }
+
+    /**
+     * Function to display all questions from the database
+     */
+    static getAllQuestions() 
+    {
+        return QuestionDao.showQuestionsList();  
+    }
 }
 module.exports = QuestionService;

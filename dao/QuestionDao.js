@@ -32,5 +32,25 @@ class QuestionDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to display all questions from the database
+     */
+    static async showQuestionsList() 
+    {
+        let questionQuery = 'SELECT question, option1, option2, option3, option4 FROM questions';
+        try
+        {
+            const client = await pool.connect();
+            const result = await client.query(questionQuery);
+            client.release();
+            console.log(result);
+            return result.rows;
+        }
+        catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = QuestionDao;
