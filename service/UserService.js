@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const UserDao = require('../dao/UserDao.js');
+const UserValidator = require('../validation/UserValidator.js');
 class UserService 
 {
     /**
@@ -54,5 +55,23 @@ class UserService
     {
         return UserDao.deleteUser(id);
     }
+
+    /**
+     * Function to change password details
+     * @param {*} updatedDetails
+     */
+    static changePassword(updatedDetails)
+    {
+        const result = UserValidator.passwordSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return UserDao.changePassword(updatedDetails);
+        }      
+    }
+
 }
 module.exports = UserService;

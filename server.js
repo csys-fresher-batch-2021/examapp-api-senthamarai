@@ -20,6 +20,8 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
 app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
 
+app.delete('/api/admin/delete/:id', AdminController.deleteAdmin); //Delete Admin
+
 app.get('/api/admin/users', UserController.getAllUsers); //Display all Users by Admin
 
 app.get('/api/admin/users/:id', UserController.getUserById); //Display the Users by Id by Admin
@@ -31,6 +33,8 @@ app.delete('/api/admin/users/:id', UserController.deleteUser); //Delete the User
 app.post('/api/user', UserController.addNewUser); //User Registration
 
 app.post('/api/user/login', UserController.authenticateUser); //User Login
+
+app.put('/api/user/changepassword', UserController.changePassword); //Change User Password
 
 
 //Routes for subjects

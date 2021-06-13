@@ -65,7 +65,7 @@ class AdminController
         }
     }
 
-     /**
+    /**
      * Function to delete the admin to the database.
      * @param {*} req 
      * @param {*} res 

@@ -47,7 +47,7 @@ class AdminService
         }      
     }
 
-     /**
+    /**
      * Function to delete a subject details by using id.
      * @param {*} id 
      */
