@@ -19,6 +19,8 @@ app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
 app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
 
+app.delete('/api/admin/delete/:id', AdminController.deleteAdmin); //Delete Admin
+
 
 //Routes for subjects
 

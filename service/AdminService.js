@@ -20,7 +20,7 @@ class AdminService
         }
             
     }
-  
+
     /**
      * Function check whether user is available.
      * @param {*} login 
@@ -46,5 +46,15 @@ class AdminService
             return AdminDao.changePassword(updatedDetails);
         }      
     }
+
+     /**
+     * Function to delete a subject details by using id.
+     * @param {*} id 
+     */
+    static deleteAdmin(id)
+    {
+        return AdminDao.deleteAdmin(id);
+    }
+
 }
 module.exports = AdminService;

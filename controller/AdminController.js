@@ -64,5 +64,28 @@ class AdminController
             res.status(400).json({message: err.message});
         }
     }
+
+     /**
+     * Function to delete the admin to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async deleteAdmin(req, res) 
+    {
+        try 
+        {
+            let id = parseInt(req.params.id);
+            const status = await AdminService.deleteAdmin(id);
+            if (status != 0) 
+            {
+                console.log("Deleted successfully");
+                res.status(200).json({ message: "success" });
+            }
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = AdminController;
