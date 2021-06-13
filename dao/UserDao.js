@@ -83,5 +83,26 @@ class UserDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to delete a user details by using id.
+     * @param {*} id 
+     */
+    static async deleteUser(id)
+    {
+        let params = [id];
+        let deleteQuery = 'DELETE FROM registeruser WHERE user_id = $1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(deleteQuery, params);
+           // console.log(result);
+            client.release();
+            return result.rowCount;
+        } catch (error) 
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports = UserDao;
