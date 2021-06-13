@@ -55,5 +55,6 @@ app.post('/api/admin/questions', QuestionController.addNewQuestion); //Add new S
 
 app.get('/api/questions', QuestionController.getAllQuestions); //Display all Questions by Users
 
+app.get('/api/questions/:id', QuestionController.getQuestionById); // Display the Questions by Id by Users
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

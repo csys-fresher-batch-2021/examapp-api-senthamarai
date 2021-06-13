@@ -28,5 +28,15 @@ class QuestionService
     {
         return QuestionDao.showQuestionsList();  
     }
+
+    /**
+     * Function to get a question details by using id.
+     * @param {*} id
+     */
+    static getQuestionDetail(id )
+    {
+        return QuestionDao.getQuestion(id);
+    }
+    
 }
 module.exports = QuestionService;
