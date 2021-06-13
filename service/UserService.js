@@ -28,5 +28,13 @@ class UserService
     {
         return UserDao.authenticateUser(login);  
     }
+
+    /**
+     * Function to display all users from the database
+     */
+    static getAllUsers() 
+    {
+        return UserDao.showUsersList();  
+    }
 }
 module.exports = UserService;
