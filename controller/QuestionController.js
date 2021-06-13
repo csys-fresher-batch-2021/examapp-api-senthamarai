@@ -23,5 +23,12 @@ class QuestionController
             res.status(400).send(error.message);
         }
     }
+
+    //Function to display the questions from the database
+    static async getAllQuestions(req, res) 
+    {
+        let result = await QuestionService.getAllQuestions();
+        res.send(result);
+    }
 }
 module.exports = QuestionController;

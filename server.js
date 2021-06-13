@@ -53,5 +53,7 @@ app.put('/api/admin/updatesubject', SubjectController.updateSubject); //Change U
 
 app.post('/api/admin/questions', QuestionController.addNewQuestion); //Add new Subject by Admin
 
+app.get('/api/questions', QuestionController.getAllQuestions); //Display all Questions by Users
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
