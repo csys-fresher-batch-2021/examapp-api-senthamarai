@@ -1,6 +1,5 @@
 const Joi = require('joi');
 const UserDao = require('../dao/UserDao.js');
-const UserValidator = require('../validation/UserValidator.js');
 class UserService 
 {
     /**
@@ -19,6 +18,15 @@ class UserService
             return UserDao.addNewUser(user);
         }
             
+    }
+
+    /**
+     * Function check whether user is available.
+     * @param {*} login 
+     */
+    static authenticateUser(login)
+    {
+        return UserDao.authenticateUser(login);  
     }
 }
 module.exports = UserService;

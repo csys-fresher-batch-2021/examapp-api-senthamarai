@@ -21,5 +21,26 @@ class UserDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to check whether user is available in database for authentication.
+     * @param {*} login 
+     */
+    static async authenticateUser(login)
+    {
+        let loginData = [login.email, login.password];
+        const userQuery = "UPDATE registeruser SET last_login = now() WHERE email=$1 AND password=$2";
+        try
+        {
+            let client = await pool.connect();
+            let result = await client.query(userQuery,loginData);
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = UserDao;
