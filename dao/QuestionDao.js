@@ -52,5 +52,26 @@ class QuestionDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to get a question details by using id.
+     * @param {*} question_id 
+     */
+    static async getQuestion(question_id)
+    {
+        let params = [question_id];
+        let getQuestion = 'SELECT question, option1, option2, option3, option4 FROM questions WHERE question_id=$1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getQuestion, params);
+            client.release();
+            return result;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = QuestionDao;

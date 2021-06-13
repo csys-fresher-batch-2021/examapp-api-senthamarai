@@ -23,12 +23,19 @@ class QuestionController
             res.status(400).send(error.message);
         }
     }
-
+    
     //Function to display the questions from the database
     static async getAllQuestions(req, res) 
     {
         let result = await QuestionService.getAllQuestions();
         res.send(result);
+    }
+
+    //Function to display the questions by id from the database
+    static async getQuestionById(req, res) 
+    {
+        let result = await QuestionService.getQuestionDetail(req.params.id);
+        res.send(result.rows);
     }
 }
 module.exports = QuestionController;
