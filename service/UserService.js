@@ -46,5 +46,13 @@ class UserService
         return UserDao.getUser(id);
     }
 
+    /**
+     * Function to delete a user details by using id.
+     * @param {*} id 
+     */
+    static deleteUser(id)
+    {
+        return UserDao.deleteUser(id);
+    }
 }
 module.exports = UserService;

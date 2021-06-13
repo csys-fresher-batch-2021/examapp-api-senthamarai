@@ -56,5 +56,28 @@ class UserController
         let result = await UserService.getUserDetail(req.params.id);
         res.send(result.rows);
     }
+
+    /**
+     * Function to delete the users to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async deleteUser(req, res) 
+    {
+        try 
+        {
+            let id = parseInt(req.params.id);
+            const status = await UserService.deleteUser(id);
+            if (status != 0) 
+            {
+                console.log("Deleted successfully");
+                res.status(200).json({ message: "success" });
+            }
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = UserController;
