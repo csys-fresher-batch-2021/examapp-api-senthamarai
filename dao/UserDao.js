@@ -126,5 +126,26 @@ class UserDao
             console.log(err);
         }
     }
+
+     /**
+     * Function to get a user details by organization name.
+     * @param {*} organization_name
+     */
+    static async getUserByOrganization(organization_name)
+    {
+        let params = [organization_name];
+        let getOrganization = 'SELECT  user_id,firstname,lastname,email,organization_name,created_on,last_login FROM registeruser WHERE organization_name=$1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getOrganization, params);
+            client.release();
+            return result.rows;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = UserDao;

@@ -73,5 +73,14 @@ class UserService
         }      
     }
 
+    /**
+     * Function to get a user details by organization_name.
+     * @param {*} organization_name
+     */
+    static getUserByOrganization(organization_name)
+    {
+        return UserDao.getUserByOrganization(organization_name);
+    }
+
 }
 module.exports = UserService;

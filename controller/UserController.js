@@ -100,5 +100,27 @@ class UserController
             res.status(400).json({message: err.message});
         }
     }
+
+    /**
+     * Function to display user by organization name to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async getUserByOrganization(req, res)
+    {
+        try 
+        {
+            let organization_name = req.params.organization_name;
+            let status = await UserService.getUserByOrganization(organization_name);
+            if(status!=0)
+            {
+                res.send(status);
+            } 
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = UserController;
