@@ -127,7 +127,7 @@ class UserDao
         }
     }
 
-     /**
+    /**
      * Function to get a user details by organization name.
      * @param {*} organization_name
      */
@@ -147,5 +147,34 @@ class UserDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to update user details in database.
+     * @param {*} updatedDetails
+     */
+    static async updateUser(updatedDetails)
+    {
+        let params = [
+            updatedDetails.user_id,
+            updatedDetails.firstname,
+            updatedDetails.lastname,
+            updatedDetails.email, 
+            updatedDetails.organization_name
+        ];
+        let updateQuery = `UPDATE registeruser SET firstname=$2, lastname=$3, email=$4, organization_name=$5 WHERE user_id=$1`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(updateQuery, params);
+            console.log("Updated successfully");
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
 }
 module.exports = UserDao;

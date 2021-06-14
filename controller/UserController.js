@@ -122,5 +122,26 @@ class UserController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+    * Function to update the user details in the database.
+    * @param {*} req 
+    * @param {*} res 
+    */
+    static async updateUser(req, res)
+    {
+        try
+        {
+            let result = await UserService.updateUser(req.body);
+            if(result != null)
+            {
+                 res.status(200).json({message: "success"});
+            }
+        } 
+        catch(err)
+        {
+            res.status(400).json({message: err.message});
+        }
+    }
 }
 module.exports = UserController;
