@@ -82,5 +82,23 @@ class UserService
         return UserDao.getUserByOrganization(organization_name);
     }
 
+    /**
+     * Function to update user details
+     * @param {*} updatedDetails
+     */
+    static updateUser(updatedDetails)
+    {
+        const result = UserValidator.updateSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return UserDao.updateUser(updatedDetails);
+        }      
+    }
+
+
 }
 module.exports = UserService;

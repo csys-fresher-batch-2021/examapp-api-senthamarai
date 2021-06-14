@@ -38,6 +38,8 @@ app.post('/api/user/login', UserController.authenticateUser); //User Login
 
 app.put('/api/user/changepassword', UserController.changePassword); //Change User Password
 
+app.put('/api/user/update', UserController.updateUser); //Update User 
+
 
 //Routes for subjects
 app.get('/api/subjects', SubjectController.getAllSubjects); // Display the Subjects by Users
