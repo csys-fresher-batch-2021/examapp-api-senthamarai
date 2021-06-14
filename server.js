@@ -62,5 +62,7 @@ app.delete('/api/admin/questions/:id', QuestionController.deleteQuestion); //Del
 
 app.get('/api/question/code/:subject_code', QuestionController.getQuestionByCode); // Display the Questions by subject code
 
+app.get('/api/question/name/:subject_name', QuestionController.getQuestionByName); // Display the Questions by subject name
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

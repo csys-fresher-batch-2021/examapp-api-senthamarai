@@ -55,5 +55,14 @@ class QuestionService
     {
         return QuestionDao.getQuestionByCode(subject_code);
     }
+
+    /**
+     * Function to get a question details by subject_name.
+     * @param {*} subject_name
+     */
+    static getQuestionByName(subject_name)
+    {
+        return QuestionDao.getQuestionByName(subject_name);
+    }
 }
 module.exports = QuestionService;
