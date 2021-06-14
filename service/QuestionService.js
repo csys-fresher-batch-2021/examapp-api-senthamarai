@@ -46,5 +46,14 @@ class QuestionService
     {
         return QuestionDao.deleteQuestion(id);
     } 
+
+    /**
+     * Function to get a question details by subject_code.
+     * @param {*} subject_code
+     */
+    static getQuestionByCode(subject_code)
+    {
+        return QuestionDao.getQuestionByCode(subject_code);
+    }
 }
 module.exports = QuestionService;

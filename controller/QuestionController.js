@@ -60,5 +60,27 @@ class QuestionController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+     * Function to display question by subject code to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async getQuestionByCode(req, res)
+    {
+        try 
+        {
+            let subject_code = req.params.subject_code;
+            let status = await QuestionService.getQuestionByCode(subject_code);
+            if(status!=0)
+            {
+                res.send(status);
+            } 
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = QuestionController;

@@ -94,5 +94,26 @@ class QuestionDao
             console.log(error);
         }
     }
+
+    /**
+     * Function to get a question details by subject code.
+     * @param {*} subject_code 
+     */
+    static async getQuestionByCode(subject_code)
+    {
+        let params = [subject_code];
+        let getQuestion = 'SELECT question, option1, option2, option3, option4 FROM questions WHERE subject_code=$1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getQuestion, params);
+            client.release();
+            return result.rows;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = QuestionDao;
