@@ -82,5 +82,27 @@ class QuestionController
             res.status(400).send(error.message);
         }
     }
+
+    /**
+     * Function to display question by subject name to the database.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    static async getQuestionByName(req, res)
+    {
+        try 
+        {
+            let subject_name = req.params.subject_name;
+            let status = await QuestionService.getQuestionByName(subject_name);
+            if(status!=0)
+            {
+                res.send(status);
+            } 
+        }
+        catch (error) 
+        {
+            res.status(400).send(error.message);
+        }
+    }
 }
 module.exports = QuestionController;

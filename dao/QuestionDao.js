@@ -115,5 +115,26 @@ class QuestionDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to get a question details by subject name.
+     * @param {*} subject_name
+     */
+    static async getQuestionByName(subject_name)
+    {
+        let params = [subject_name];
+        let getQuestion = 'SELECT question, option1, option2, option3, option4 FROM questions WHERE subject_name=$1';
+        try 
+        {
+            const client = await pool.connect();
+            const result = await client.query(getQuestion, params);
+            client.release();
+            return result.rows;
+        } 
+        catch (err) 
+        {
+            console.log(err);
+        }
+    }
 }
 module.exports = QuestionDao;
