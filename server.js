@@ -29,6 +29,7 @@ app.get('/api/admin/users/:id', UserController.getUserById); //Display the Users
 
 app.delete('/api/admin/users/:id', UserController.deleteUser); //Delete the Users by Admin
 
+app.get('/api/admin/user/organization/:organization_name', UserController.getUserByOrganization); // Display the Users by organization name
 
 //Routes for registered users
 app.post('/api/user', UserController.addNewUser); //User Registration
