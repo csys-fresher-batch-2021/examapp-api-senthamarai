@@ -28,7 +28,7 @@ class SubjectDao
     static async getSubject(id)
     {
         let params = [id];
-        let getSubject = 'SELECT * FROM Subjectslist WHERE id = $1';
+        let getSubject = 'SELECT * FROM Subjectslist WHERE subject_id = $1';
         try 
         {
             const client = await pool.connect();
@@ -48,8 +48,8 @@ class SubjectDao
      */
     static async addNewSubject(subject) 
     {
-        let subjectData=[subject.subject];
-        let querySubject = 'INSERT INTO public.subjectslist(subject) VALUES ($1)';
+        let subjectData=[subject.subject_code, subject.subject_name];
+        let querySubject = 'INSERT INTO public.subjectslist(subject_code, subject_name) VALUES ($1,$2)';
         try 
         {
             const client = await pool.connect();
@@ -70,7 +70,7 @@ class SubjectDao
     static async deleteSubject(id)
     {
         let params = [id];
-        let deleteQuery = 'DELETE FROM subjectslist WHERE id = $1';
+        let deleteQuery = 'DELETE FROM subjectslist WHERE subject_id = $1';
         try 
         {
             const client = await pool.connect();
