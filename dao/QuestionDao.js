@@ -136,5 +136,39 @@ class QuestionDao
             console.log(err);
         }
     }
+
+    /**
+     * Function to a change question details in database.
+     * @param {*} updatedDetails
+     */
+    static async updateQuestion(updatedDetails)
+    {
+        let params = [
+            updatedDetails.question_id,
+            updatedDetails.subject_code,
+            updatedDetails.subject_name,
+            updatedDetails.question, 
+            updatedDetails.option1, 
+            updatedDetails.option2, 
+            updatedDetails.option3, 
+            updatedDetails.option4, 
+            updatedDetails.answer,
+            updatedDetails.active,
+        ];
+        let updateQuery = `UPDATE questions SET subject_code=$2, subject_name=$3, question=$4, option1=$5, option2=$6, option3=$7, option4=$8, answer=$9, active=$10  WHERE question_id=$1`;
+        try
+        {
+            let client = await pool.connect();
+            let result = client.query(updateQuery, params);
+            console.log("Updated successfully");
+            client.release();
+            return result;
+        } 
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
 }
 module.exports = QuestionDao;

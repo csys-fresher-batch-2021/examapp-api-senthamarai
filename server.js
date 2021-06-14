@@ -64,5 +64,7 @@ app.get('/api/question/code/:subject_code', QuestionController.getQuestionByCode
 
 app.get('/api/question/name/:subject_name', QuestionController.getQuestionByName); // Display the Questions by subject name
 
+app.put('/api/admin/updatequestions', QuestionController.updateQuestion); //Update Question
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

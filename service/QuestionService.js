@@ -64,5 +64,22 @@ class QuestionService
     {
         return QuestionDao.getQuestionByName(subject_name);
     }
+
+    /**
+     * Function to change question details
+     * @param {*} updatedDetails
+     */
+    static updateQuestion(updatedDetails)
+    {
+        const result = QuestionValidator.questionSchema().validate(updatedDetails);
+        if(result.error != null)
+        {
+            throw new Error(result.error);
+        }
+        else
+        {
+            return QuestionDao.updateQuestion(updatedDetails);
+        }      
+    }
 }
 module.exports = QuestionService;
