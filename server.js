@@ -17,9 +17,11 @@ app.get('/', (req, res) => res.send('PARIKSHA Reaching out to everyone'))
 //Routes for admin 
 app.post('/api/admin', AdminController.addNewAdmin); //Admin Registration
 
+app.get('/api/admin', AdminController.getAllAdmins); //Display all Users by Admin
+
 app.post('/api/admin/login', AdminController.authenticateAdmin); //Admin Login
 
-app.put('/api/admin/changepassword', AdminController.changePassword); //Change User Password
+app.put('/api/admin/changepassword', AdminController.changePassword); //Change Admin Password
 
 app.delete('/api/admin/delete/:id', AdminController.deleteAdmin); //Delete Admin
 
@@ -38,7 +40,7 @@ app.post('/api/user/login', UserController.authenticateUser); //User Login
 
 app.put('/api/user/changepassword', UserController.changePassword); //Change User Password
 
-app.put('/api/user/update', UserController.updateUser); //Update User 
+app.put('/api/user/update', UserController.updateUser); //Update User details
 
 
 //Routes for subjects
@@ -50,7 +52,7 @@ app.post('/api/admin/subjects', SubjectController.addNewSubject); //Add new Subj
 
 app.delete('/api/admin/subjects/:id', SubjectController.deleteSubject); //Delete the Existing Subject by Admin
 
-app.put('/api/admin/updatesubject', SubjectController.updateSubject); //Change User Password
+app.put('/api/admin/updatesubject', SubjectController.updateSubject); //Change Subject Details
 
 //Routes for question
 

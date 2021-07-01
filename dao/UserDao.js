@@ -7,8 +7,8 @@ class UserDao
      */
     static async addNewUser(user) 
     {
-        let userData = [user.user_id, user.firstname, user.lastname,user.email,user.organization_name,user.password];
-        let querySubject = 'INSERT INTO public.registeruser(user_id, firstname, lastname, email, organization_name, password) VALUES ($1, $2, $3, $4, $5 ,$6)';
+        let userData = [user.firstname, user.lastname,user.email,user.organization_name,user.password];
+        let querySubject = 'INSERT INTO public.registeruser(firstname, lastname, email, organization_name, password) VALUES ($1, $2, $3, $4, $5)';
         try 
         {
             const client = await pool.connect();

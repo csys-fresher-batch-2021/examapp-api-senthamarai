@@ -71,7 +71,7 @@ class QuestionService
      */
     static updateQuestion(updatedDetails)
     {
-        const result = QuestionValidator.questionSchema().validate(updatedDetails);
+        const result = QuestionValidator.updateSchema().validate(updatedDetails);
         if(result.error != null)
         {
             throw new Error(result.error);

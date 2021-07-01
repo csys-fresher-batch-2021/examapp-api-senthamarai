@@ -50,7 +50,7 @@ class SubjectService
      */
     static updateSubject(updatedDetails)
     {
-        const result = SubjectValidator.subjectSchema().validate(updatedDetails);
+        const result = SubjectValidator.updateSchema().validate(updatedDetails);
         if(result.error != null)
         {
             throw new Error(result.error);
