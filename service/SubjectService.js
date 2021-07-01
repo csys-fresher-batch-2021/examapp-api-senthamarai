@@ -60,6 +60,5 @@ class SubjectService
             return SubjectDao.updateSubject(updatedDetails);
         }      
     }
-
 }
 module.exports = SubjectService;

@@ -58,8 +58,7 @@ class SubjectController
         {
             res.status(400).send(error.message);
         }
-    }
-
+      
     /**
     * Function to change the subject details in the database.
     * @param {*} req 

@@ -28,7 +28,7 @@ class SubjectDao
     static async getSubject(id)
     {
         let params = [id];
-        let getSubject = 'SELECT * FROM subjectslist WHERE id = $1';
+        let getSubject = 'SELECT * FROM Subjectslist WHERE subject_id = $1';
         try 
         {
             const client = await pool.connect();
