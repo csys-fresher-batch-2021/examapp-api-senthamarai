@@ -87,5 +87,13 @@ class AdminController
             res.status(400).send(error.message);
         }
     }
+
+    //Function to display the users from the database
+    static async getAllAdmins(req, res) 
+    {
+        let result = await AdminService.getAllAdmins();
+        res.send(result);
+    }
+
 }
 module.exports = AdminController;

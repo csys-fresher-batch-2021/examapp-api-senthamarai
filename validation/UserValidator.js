@@ -5,7 +5,6 @@ class UserValidator
     static userSchema()
     {
         const schema = Joi.object({
-            user_id: Joi.number().min(1).required(),
             firstname: Joi.string().min(1).max(20).required(),
             lastname: Joi.string().min(1).max(20).required(),
             email: Joi.string().email().required(),

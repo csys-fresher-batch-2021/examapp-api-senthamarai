@@ -9,15 +9,7 @@ class AdminService
      */
     static addNewAdmin(admin)
     {
-        const result = AdminValidator.adminSchema().validate(admin);
-        if(result.error != null)
-        {
-            throw new Error(result.error);
-        }
-        else
-        {
-            return AdminDao.addNewAdmin(admin);
-        }
+       return AdminDao.addNewAdmin(admin);
             
     }
 
@@ -36,15 +28,7 @@ class AdminService
      */
     static changePassword(updatedDetails)
     {
-        const result = AdminValidator.passwordSchema().validate(updatedDetails);
-        if(result.error != null)
-        {
-            throw new Error(result.error);
-        }
-        else
-        {
-            return AdminDao.changePassword(updatedDetails);
-        }      
+        return AdminDao.changePassword(updatedDetails);   
     }
 
     /**
@@ -54,6 +38,14 @@ class AdminService
     static deleteAdmin(id)
     {
         return AdminDao.deleteAdmin(id);
+    }
+
+     /**
+     * Function to display all admin from the database
+     */
+    static getAllAdmins() 
+    {
+        return AdminDao.showAdminsList();  
     }
 
 }

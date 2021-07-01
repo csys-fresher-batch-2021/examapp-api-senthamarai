@@ -7,8 +7,8 @@ class AdminDao
      */
     static async addNewAdmin(admin) 
     {
-        let adminData = [admin.admin_id, admin.firstname, admin.lastname, admin.email, admin.organization_name, admin.password];
-        let querySubject = 'INSERT INTO public.adminuser(admin_id,firstname, lastname, email, organization_name, password) VALUES ($1, $2, $3 ,$4 , $5, $6)';
+        let adminData = [admin.firstname, admin.lastname, admin.email, admin.organization_name, admin.password];
+        let querySubject = 'INSERT INTO public.adminuser(firstname, lastname, email, organization_name, password) VALUES ($1, $2, $3 ,$4 , $5)';
         try 
         {
             const client = await pool.connect();
@@ -81,6 +81,26 @@ class AdminDao
             client.release();
             return result.rowCount;
         } catch (error) 
+        {
+            console.log(error);
+        }
+    }
+
+     /**
+     * Function to display all users from the database
+     */
+    static async showAdminsList() 
+    {
+        let userQuery = 'SELECT admin_id, firstname,lastname,email,organization_name,created_on FROM adminuser';
+        try
+        {
+            const client = await pool.connect();
+            const result = await client.query(userQuery);
+            client.release();
+            console.log(result);
+            return result.rows;
+        }
+        catch (error) 
         {
             console.log(error);
         }

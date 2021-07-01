@@ -8,7 +8,6 @@ class QuestionDao
     static async addNewQuestion(question) 
     {
         let questionData = [
-            question.question_id, 
             question.subject_code, 
             question.subject_name,
             question.question,
@@ -16,10 +15,9 @@ class QuestionDao
             question.option2,
             question.option3,
             question.option4,
-            question.answer,
-            question.active
+            question.answer
         ];
-        let queryQuestion = 'INSERT INTO questions(question_id, subject_code, subject_name, question, option1, option2, option3, option4, answer,active) VALUES ($1, $2, $3, $4, $5 ,$6 ,$7, $8, $9, $10)';
+        let queryQuestion = 'INSERT INTO questions(subject_code, subject_name, question, option1, option2, option3, option4, answer) VALUES ($1, $2, $3, $4, $5 ,$6 ,$7, $8)';
         try 
         {
             const client = await pool.connect();
@@ -38,7 +36,7 @@ class QuestionDao
      */
     static async showQuestionsList() 
     {
-        let questionQuery = 'SELECT question, option1, option2, option3, option4 FROM questions';
+        let questionQuery = 'SELECT * FROM questions';
         try
         {
             const client = await pool.connect();
@@ -102,7 +100,7 @@ class QuestionDao
     static async getQuestionByCode(subject_code)
     {
         let params = [subject_code];
-        let getQuestion = 'SELECT question, option1, option2, option3, option4 FROM questions WHERE subject_code=$1';
+        let getQuestion = 'SELECT questions.question, questions.option1, questions.option2, questions.option3, questions.option4  FROM questions INNER JOIN subjectslist ON subjectslist.subject_code = $1 AND questions.subject_code=$1';;
         try 
         {
             const client = await pool.connect();
@@ -123,7 +121,7 @@ class QuestionDao
     static async getQuestionByName(subject_name)
     {
         let params = [subject_name];
-        let getQuestion = 'SELECT question, option1, option2, option3, option4 FROM questions WHERE subject_name=$1';
+        let getQuestion = 'SELECT questions.question, questions.option1, questions.option2, questions.option3, questions.option4  FROM questions INNER JOIN subjectslist ON subjectslist.subject_name = $1 AND questions.subject_name=$1';
         try 
         {
             const client = await pool.connect();
@@ -152,10 +150,9 @@ class QuestionDao
             updatedDetails.option2, 
             updatedDetails.option3, 
             updatedDetails.option4, 
-            updatedDetails.answer,
-            updatedDetails.active,
+            updatedDetails.answer
         ];
-        let updateQuery = `UPDATE questions SET subject_code=$2, subject_name=$3, question=$4, option1=$5, option2=$6, option3=$7, option4=$8, answer=$9, active=$10  WHERE question_id=$1`;
+        let updateQuery = `UPDATE questions SET subject_code=$2, subject_name=$3, question=$4, option1=$5, option2=$6, option3=$7, option4=$8, answer=$9 WHERE question_id=$1`;
         try
         {
             let client = await pool.connect();
